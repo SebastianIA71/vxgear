@@ -1,0 +1,67 @@
+---
+import "../../styles/vxgear-waitlist.css";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>VXGear – Join the Waitlist</title>
+  </head>
+
+  <body class="vx-bg text-white">
+    <header class="pt-10 flex justify-center">
+      <h1 class="vx-logo text-4xl tracking-wide">
+        <span class="vx-x">VX</span>GEAR
+      </h1>
+    </header>
+
+    <section class="min-h-screen -mt-20 flex flex-col items-center justify-center px-6 text-center fade-in">
+      <h2 class="text-4xl md:text-6xl font-bold mb-6">
+        Feel the Road.<br />Before You Ride.
+      </h2>
+
+      <p class="text-gray-300 mb-8 max-w-xl">
+        Be the first to try the app that finds your perfect motorcycle gear.  
+        Smart, personal, automatic. Powered by AI.
+      </p>
+
+      <form
+        class="flex flex-col sm:flex-row gap-4 w-full max-w-md"
+        onsubmit="submitEmail(event)"
+      >
+        <input
+          type="email"
+          id="email-input"
+          placeholder="Your email"
+          class="flex-1 px-4 py-3 rounded-lg text-black"
+          required
+        />
+
+        <button
+          type="submit"
+          class="px-6 py-3 bg-vx-mustard text-black font-semibold rounded-lg hover:bg-vx-mustard-light transition">
+          Join Waitlist
+        </button>
+      </form>
+
+      <p class="text-xs text-gray-500 mt-6">
+        Zero spam. Only exclusive early access.
+      </p>
+    </section>
+
+    <script>
+      async function submitEmail(e) {
+        e.preventDefault();
+        const email = document.getElementById("email-input").value;
+
+        await fetch("https://tu-n8n/webhook/waitlist", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        });
+
+        alert("You're in! We'll notify you soon.");
+      }
+    </script>
+  </body>
+</html>
