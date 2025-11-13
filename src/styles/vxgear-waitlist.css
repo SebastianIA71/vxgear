@@ -1,0 +1,43 @@
+:root {
+  --vx-mustard: #B79A29;
+  --vx-mustard-light: #d4b84b;
+}
+
+.vx-bg {
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.9)
+    ),
+    url('/vx-bg.jpg'); /* cambia por tu fondo final */
+  background-size: cover;
+  background-position: center;
+}
+
+.vx-logo {
+  font-family: Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+}
+
+.vx-logo .vx-x {
+  color: var(--vx-mustard);
+}
+
+.bg-vx-mustard {
+  background-color: var(--vx-mustard);
+}
+
+.hover\:bg-vx-mustard-light:hover {
+  background-color: var(--vx-mustard-light);
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.2s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
