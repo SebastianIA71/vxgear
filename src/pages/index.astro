@@ -1,183 +1,177 @@
 ---
-import Base from "../layouts/Base.astro";
-const year = new Date().getFullYear();
+export const prerender = true;
 ---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Waita – Launching Soon</title>
 
-<Base>
+    <!-- Inter font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Fondo con grain estilo Waita -->
-  <style>
-    .noise {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEX///+nxBvIAAAACklEQVR42mOAAQAAAgAB9HFkWQAAAABJRU5ErkJggg==");
-      opacity: 0.07;
-      z-index: 50;
-    }
-  </style>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+      }
+      .noise {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEX///+nxBvIAAAACklEQVR42mOAAQAAAgAB9HFkWQAAAABJRU5ErkJggg==");
+        opacity: 0.07;
+        z-index: 50;
+      }
+      .hero-bg {
+        background: radial-gradient(circle at top, #ffffff10 0%, #0f0f0f 80%);
+      }
+    </style>
+  </head>
 
-  <div class="noise"></div>
+  <body class="bg-[#0f0f0f] text-white relative">
 
-  <main class="min-h-screen flex items-center justify-center py-16 lg:py-28 bg-[#020617] text-slate-50 relative">
+    <div class="noise"></div>
 
-    <div class="w-full max-w-7xl mx-auto px-6 lg:px-12">
+    <!-- MAIN -->
+    <main class="min-h-screen flex items-center py-20">
+      <div class="w-full max-w-7xl mx-auto px-6 lg:px-12">
 
-      <!-- HEADER estilo Waita -->
-      <header class="flex items-center justify-between mb-12">
-        <div class="flex items-center gap-3">
-          <div
-            class="h-10 w-10 rounded-xl border border-[#B79A29]/70 flex items-center justify-center font-bold tracking-wider"
-          >
-            VX
-          </div>
-          <div class="leading-tight">
-            <div class="text-sm font-semibold tracking-[0.25em]">
-              VXGEAR
+        <!-- HEADER -->
+        <header class="flex items-center justify-between mb-12">
+          <div class="flex items-center gap-3">
+            <div
+              class="h-10 w-10 rounded-xl border border-white/20 flex items-center justify-center font-bold tracking-wider"
+            >
+              WT
             </div>
-            <div class="text-xs text-slate-400 uppercase">
-              virtual xperience gear
-            </div>
-          </div>
-        </div>
-
-        <p class="hidden sm:block text-xs text-slate-400">
-          Feel the road. <span class="text-[#B79A29]">Virtually.</span>
-        </p>
-      </header>
-
-      <!-- GRID principal -->
-      <section
-        class="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-16 lg:gap-24 items-center"
-      >
-
-        <!-- IZQUIERDA -->
-        <div class="space-y-6">
-
-          <!-- Badge -->
-          <div
-            class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs text-slate-300 backdrop-blur"
-          >
-            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
-            <span class="uppercase tracking-[0.2em] text-[0.65rem]">
-              early access • 2026
-            </span>
-          </div>
-
-          <div class="space-y-4">
-            <h1 class="text-4xl sm:text-5xl font-semibold leading-tight">
-              The smartest way to
-              <span class="block text-[#B79A29]">choose your motorcycle gear.</span>
-            </h1>
-
-            <p class="text-base text-slate-300 max-w-xl">
-              VXGear is an
-              <span class="font-medium text-white">AI-powered gear assistant</span>
-              that learns your style, your bike, your weather and the roads you ride — and recommends jackets, helmets, gloves and more that truly fit you.
-            </p>
-          </div>
-
-          <!-- Avatares estilo Waita -->
-          <div class="flex items-center gap-4">
-            <div class="flex -space-x-3">
-              <div
-                class="h-9 w-9 rounded-full border border-slate-900 bg-gradient-to-br from-[#B79A29] to-amber-700 flex items-center justify-center text-sm font-semibold"
-              >
-                AI
+            <div class="leading-tight">
+              <div class="text-sm font-semibold tracking-[0.25em]">
+                WAITA
               </div>
-              <div
-                class="h-9 w-9 rounded-full border border-slate-900 bg-slate-600 flex items-center justify-center text-sm font-semibold"
-              >
-                VX
-              </div>
-              <div
-                class="h-9 w-9 rounded-full border border-slate-900 bg-slate-500 flex items-center justify-center text-sm"
-              >
-                🏍
+              <div class="text-xs text-white/50 uppercase">
+                Launch Template
               </div>
             </div>
-            <p class="text-sm text-slate-400">
-              Riders from <span class="text-white">15+ cities</span> already joined.
-            </p>
           </div>
-        </div>
 
-        <!-- DERECHA — CARD estilo Waita -->
-        <div class="relative">
+          <p class="hidden sm:block text-xs text-white/50">
+            Launching <span class="text-white">Nov 12th</span>
+          </p>
+        </header>
 
-          <!-- Glow -->
-          <div
-            class="absolute inset-0 rounded-[28px] bg-[radial-gradient(circle_at_top,_#B79A29_0,_#020617_70%)] opacity-60 blur-2xl"
-          ></div>
+        <!-- GRID: LEFT TEXT + RIGHT CAROUSEL -->
+        <section class="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-16 lg:gap-24 items-center">
 
-          <!-- Card -->
-          <div
-            class="relative rounded-[28px] border border-white/10 bg-white/[0.06] backdrop-blur-xl p-8 shadow-[0_20px_60px_-10px_rgba(0,0,0,0.6)] flex flex-col gap-6"
-          >
-            <div class="space-y-1">
-              <h2 class="text-xl font-semibold text-white">Join the VXGear waitlist</h2>
-              <p class="text-sm text-slate-300">
-                Be among the first to try the
-                <span class="font-medium text-white">AI gear finder</span>.
+          <!-- LEFT TEXT -->
+          <div class="space-y-6">
+
+            <!-- Badge -->
+            <div
+              class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-3 py-1 text-xs text-white/70 backdrop-blur"
+            >
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+              <span class="uppercase tracking-[0.2em] text-[0.65rem]">
+                launching nov 12th
+              </span>
+            </div>
+
+            <div class="space-y-4">
+              <h1 class="text-4xl sm:text-5xl font-semibold leading-tight">
+                Ready to launch your
+                <span class="block text-white/70">product, course or app?</span>
+              </h1>
+
+              <p class="text-base text-white/60 max-w-xl">
+                Waita is a clean and minimal waitlist-style launch page template
+                designed to help you validate your idea and start collecting leads fast.
               </p>
             </div>
 
-            <!-- Form -->
-            <form class="space-y-4">
-              <div class="space-y-2">
-                <label
-                  class="block text-xs uppercase tracking-[0.20em] text-slate-300"
-                >
-                  Email address
-                </label>
-                <input
-                  type="email"
-                  required
-                  placeholder="you@roadlover.com"
-                  class="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm text-white outline-none focus:border-[#B79A29] focus:ring-2 focus:ring-[#B79A29]/30"
-                />
+            <!-- Avatars -->
+            <div class="flex items-center gap-4">
+              <div class="flex -space-x-3">
+                <div class="h-9 w-9 rounded-full border border-black bg-white/60 flex items-center justify-center text-sm font-semibold text-black">A</div>
+                <div class="h-9 w-9 rounded-full border border-black bg-white/40 flex items-center justify-center text-sm font-semibold text-black">R</div>
+                <div class="h-9 w-9 rounded-full border border-black bg-white/40 flex items-center justify-center text-sm text-black">🙂</div>
               </div>
 
-              <button
-                type="submit"
-                class="w-full rounded-xl bg-[#B79A29] text-slate-900 font-semibold px-4 py-2.5 text-sm transition hover:bg-[#d8b643] shadow-[0_4px_20px_rgba(183,154,41,0.45)]"
-              >
-                Join waitlist
-              </button>
-            </form>
+              <p class="text-sm text-white/50">
+                12+ creators already joined.
+              </p>
+            </div>
 
-            <p class="text-xs text-slate-400">
-              Zero spam. Just one email when we launch.
-            </p>
-
-            <ul class="text-xs text-slate-300 space-y-1">
-              <li class="flex gap-2">
-                <span class="h-1.5 w-1.5 rounded-full bg-[#B79A29] mt-1"></span>
-                Early access to beta features.
-              </li>
-              <li class="flex gap-2">
-                <span class="h-1.5 w-1.5 rounded-full bg-[#B79A29] mt-1"></span>
-                Personalized gear recommendations.
-              </li>
-              <li class="flex gap-2">
-                <span class="h-1.5 w-1.5 rounded-full bg-[#B79A29] mt-1"></span>
-                Optional behind-the-scenes updates.
-              </li>
-            </ul>
           </div>
-        </div>
-      </section>
 
-      <!-- FOOTER -->
-      <footer
-        class="mt-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 text-xs text-slate-500"
-      >
-        <p>© {year} VXGear — Feel the road. Virtually.</p>
-        <p class="text-slate-600">Built with Astro & Tailwind. Crafted for riders.</p>
-      </footer>
+          <!-- RIGHT COLUMN — IMAGE CAROUSEL -->
+          <div class="relative w-full h-full flex items-center justify-center">
 
-    </div>
+            <div class="relative w-full max-w-md overflow-hidden rounded-3xl shadow-xl border border-white/10">
 
-  </main>
+              <!-- Slides -->
+              <div id="carousel" class="whitespace-nowrap transition-transform duration-700 ease-out">
 
-</Base>
+                <img src="/img/slide1.jpg"
+                     class="inline-block w-full h-96 object-cover" />
+
+                <img src="/img/slide2.jpg"
+                     class="inline-block w-full h-96 object-cover" />
+
+                <img src="/img/slide3.jpg"
+                     class="inline-block w-full h-96 object-cover" />
+
+              </div>
+
+              <!-- Controls -->
+              <div class="absolute inset-0 flex items-center justify-between px-4">
+                <button onclick="prevSlide()"
+                  class="bg-black/40 hover:bg-black/60 text-white rounded-full p-2 transition">
+                  ←
+                </button>
+
+                <button onclick="nextSlide()"
+                  class="bg-black/40 hover:bg-black/60 text-white rounded-full p-2 transition">
+                  →
+                </button>
+              </div>
+
+            </div>
+
+            <!-- JS -->
+            <script>
+              let slide = 0;
+              const total = 3;
+
+              function update() {
+                const c = document.getElementById("carousel");
+                c.style.transform = `translateX(-${slide * 100}%)`;
+              }
+
+              function nextSlide() {
+                slide = (slide + 1) % total;
+                update();
+              }
+
+              function prevSlide() {
+                slide = (slide - 1 + total) % total;
+                update();
+              }
+            </script>
+
+          </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="mt-16 text-xs text-white/40 text-center">
+          © Waita — Launch Template • {new Date().getFullYear()}
+        </footer>
+
+      </div>
+
+    </main>
+
+  </body>
+</html>
