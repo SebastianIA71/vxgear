@@ -1,88 +1,189 @@
 ---
-import "../styles/global.css";
+export const prerender = true;
+const year = new Date().getFullYear();
 ---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>VXGear – Join the Waitlist</title>
+    <meta
+      name="description"
+      content="VXGear is an AI-powered way to find motorcycle gear that truly fits your style, your bike and your rides. Join the waitlist for early access."
+    />
   </head>
-
-  <body class="min-h-screen bg-slate-950 text-slate-50 flex items-center justify-center">
-    <main class="w-full max-w-lg px-6">
-      <!-- Tarjeta principal -->
-      <section class="bg-slate-900/80 border border-slate-800 rounded-2xl px-8 py-10 shadow-xl backdrop-blur">
-        <div class="flex flex-col gap-6">
-          <!-- Logo / título -->
-          <div class="space-y-2">
-            <p class="text-xs uppercase tracking-[0.25em] text-amber-400/80">
-              VXGEAR WAITLIST
-            </p>
-            <h1 class="text-3xl md:text-4xl font-semibold text-slate-50">
-              Be first to ride<br class="hidden md:block" />the VXGear experience.
-            </h1>
-            <p class="text-sm text-slate-300 leading-relaxed">
-              We’re building an AI-powered way to find motorcycle gear that truly fits your style,
-              your bike and your rides. Leave your email and we’ll ping you
-              the moment early access opens.
-            </p>
-          </div>
-
-          <!-- Formulario -->
-          <form
-            class="flex flex-col sm:flex-row gap-3"
-            onsubmit="handleSubmit(event)"
-          >
-            <input
-              type="email"
-              id="email"
-              placeholder="you@example.com"
-              required
-              class="flex-1 px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-slate-50 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400"
-            />
-            <button
-              type="submit"
-              class="px-5 py-3 rounded-xl bg-amber-400 text-slate-900 text-sm font-semibold hover:bg-amber-300 active:bg-amber-200 transition shadow-lg shadow-amber-400/20"
+  <body class="min-h-screen bg-slate-950 text-slate-50">
+    <main class="min-h-screen flex items-center justify-center px-4 py-10">
+      <div class="w-full max-w-6xl mx-auto">
+        <!-- TOP BAR / LOGO -->
+        <header class="flex items-center justify-between mb-10">
+          <div class="flex items-center gap-2">
+            <div
+              class="h-9 w-9 rounded-xl border border-yellow-500/60 flex items-center justify-center text-xs tracking-[0.2em] font-semibold"
             >
-              Join waitlist
-            </button>
-          </form>
-
-          <!-- Mensaje de privacidad -->
-          <p class="text-[11px] text-slate-500">
-            No spam, no nonsense. Just a single email when we’re ready for you.
-          </p>
-
-          <!-- Pie mini -->
-          <div class="flex items-center justify-between pt-2 border-t border-slate-800/60 text-[11px] text-slate-500">
-            <span>© {new Date().getFullYear()} VXGear</span>
-            <span>Feel the road. Virtually.</span>
+              VX
+            </div>
+            <div class="flex flex-col leading-tight">
+              <span class="text-sm font-semibold tracking-[0.25em]">
+                VXGEAR
+              </span>
+              <span class="text-xs text-slate-400 uppercase">
+                virtual xperience gear
+              </span>
+            </div>
           </div>
-        </div>
-      </section>
+
+          <p class="hidden sm:block text-xs text-slate-400">
+            Feel the road. <span class="text-yellow-400">Virtually.</span>
+          </p>
+        </header>
+
+        <!-- MAIN LAYOUT -->
+        <section
+          class="grid grid-cols-1 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-10 items-center"
+        >
+          <!-- LEFT: TEXT BLOCK -->
+          <div class="space-y-6">
+            <!-- Badge estilo Waita -->
+            <div
+              class="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900/70 px-3 py-1 text-xs text-slate-300"
+            >
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+              <span class="uppercase tracking-[0.2em] text-[0.65rem]">
+                early access • 2026
+              </span>
+            </div>
+
+            <div class="space-y-3">
+              <h1 class="text-3xl sm:text-4xl lg:text-5xl font-semibold">
+                Ready to upgrade
+                <span class="block text-yellow-400">
+                  your motorcycle gear?
+                </span>
+              </h1>
+
+              <p class="text-sm sm:text-base text-slate-300 max-w-xl">
+                VXGear is your
+                <span class="font-semibold text-slate-50">AI-powered copilot</span>
+                for gear: it tracks your style, your bike and the roads you ride
+                to recommend jackets, helmets, gloves and more — so you spend
+                less time searching and more time riding.
+              </p>
+            </div>
+
+            <!-- Social proof estilo avatares Waita -->
+            <div class="flex flex-wrap items-center gap-4">
+              <div class="flex -space-x-2">
+                <div
+                  class="h-8 w-8 rounded-full border border-slate-900 bg-gradient-to-br from-yellow-500 to-amber-700 text-[0.7rem] flex items-center justify-center font-semibold"
+                >
+                  AI
+                </div>
+                <div
+                  class="h-8 w-8 rounded-full border border-slate-900 bg-slate-700/80 text-[0.7rem] flex items-center justify-center font-semibold"
+                >
+                  VX
+                </div>
+                <div
+                  class="h-8 w-8 rounded-full border border-slate-900 bg-slate-600/80 text-[0.7rem] flex items-center justify-center font-semibold"
+                >
+                  🏍
+                </div>
+              </div>
+
+              <p class="text-xs sm:text-sm text-slate-400">
+                Riders from <span class="text-slate-200 font-medium">15+ cities</span>
+                already joined the waitlist.
+              </p>
+            </div>
+          </div>
+
+          <!-- RIGHT: CARD + HERO -->
+          <div class="relative">
+            <!-- “Imagen” de fondo tipo hero (tú luego la sustituyes) -->
+            <div
+              class="absolute inset-0 rounded-3xl bg-[radial-gradient(circle_at_top,_#b79a29_0,_#020617_55%)] opacity-70 blur-xl"
+            ></div>
+
+            <div
+              class="relative rounded-3xl border border-slate-800 bg-slate-900/80 backdrop-blur shadow-2xl p-6 sm:p-7 flex flex-col gap-5"
+            >
+              <div class="space-y-1">
+                <h2 class="text-lg sm:text-xl font-semibold">
+                  Join the VXGear waitlist
+                </h2>
+                <p class="text-sm text-slate-300">
+                  Leave your email and we’ll ping you when
+                  <span class="font-medium text-slate-50">early access</span>
+                  opens — no spam, just one clean launch email.
+                </p>
+              </div>
+
+              <!-- FORM -->
+              <form
+                class="space-y-3"
+                action="#"
+                method="post"
+              >
+                <div class="space-y-1">
+                  <label
+                    for="email"
+                    class="block text-xs font-medium text-slate-300 uppercase tracking-[0.18em]"
+                  >
+                    Email address
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="you@roadlover.com"
+                    class="w-full rounded-xl border border-slate-700 bg-slate-950/60 px-3 py-2.5 text-sm text-slate-50 outline-none focus:border-yellow-400 focus:ring-2 focus:ring-yellow-500/40"
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  class="w-full inline-flex items-center justify-center rounded-xl bg-yellow-500 px-4 py-2.5 text-sm font-semibold text-slate-950 hover:bg-yellow-400 transition-colors shadow-lg shadow-yellow-500/20"
+                >
+                  Join waitlist
+                </button>
+              </form>
+
+              <p class="text-[0.7rem] text-slate-400">
+                No spam, no nonsense. Just a single email when we’re ready for
+                you.
+              </p>
+
+              <!-- Mini bullets tipo “what you get” -->
+              <ul class="text-xs text-slate-300 space-y-1.5 mt-2">
+                <li class="flex gap-2">
+                  <span class="mt-0.5 h-1.5 w-1.5 rounded-full bg-yellow-400"></span>
+                  Early access to VXGear beta features.
+                </li>
+                <li class="flex gap-2">
+                  <span class="mt-0.5 h-1.5 w-1.5 rounded-full bg-yellow-400"></span>
+                  Personalized gear picks based on your bike and style.
+                </li>
+                <li class="flex gap-2">
+                  <span class="mt-0.5 h-1.5 w-1.5 rounded-full bg-yellow-400"></span>
+                  Occasional behind-the-scenes updates (optional).
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-[0.7rem] text-slate-500">
+          <p>
+            © {year} VXGear — Feel the road. Virtually.
+          </p>
+          <p class="text-slate-600">
+            Built with Astro & Tailwind. Crafted for riders.
+          </p>
+        </footer>
+      </div>
     </main>
-
-    <script>
-      async function handleSubmit(e) {
-        e.preventDefault();
-        const emailInput = document.getElementById("email");
-        const email = emailInput.value.trim();
-        if (!email) return;
-
-        // 👉 CAMBIA ESTA URL POR TU WEBHOOK DE N8N CUANDO LO TENGAS
-        try {
-          await fetch("https://example.com/webhook/vxgear-waitlist", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email }),
-          });
-          alert("You're in. We'll notify you soon 🤘");
-          emailInput.value = "";
-        } catch (err) {
-          console.error(err);
-          alert("Something went wrong. Please try again in a moment.");
-        }
-      }
-    </script>
   </body>
 </html>
