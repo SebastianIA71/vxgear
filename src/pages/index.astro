@@ -1,11 +1,88 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import "../styles/global.css";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>VXGear – Join the Waitlist</title>
+  </head>
+
+  <body class="min-h-screen bg-slate-950 text-slate-50 flex items-center justify-center">
+    <main class="w-full max-w-lg px-6">
+      <!-- Tarjeta principal -->
+      <section class="bg-slate-900/80 border border-slate-800 rounded-2xl px-8 py-10 shadow-xl backdrop-blur">
+        <div class="flex flex-col gap-6">
+          <!-- Logo / título -->
+          <div class="space-y-2">
+            <p class="text-xs uppercase tracking-[0.25em] text-amber-400/80">
+              VXGEAR WAITLIST
+            </p>
+            <h1 class="text-3xl md:text-4xl font-semibold text-slate-50">
+              Be first to ride<br class="hidden md:block" />the VXGear experience.
+            </h1>
+            <p class="text-sm text-slate-300 leading-relaxed">
+              We’re building an AI-powered way to find motorcycle gear that truly fits your style,
+              your bike and your rides. Leave your email and we’ll ping you
+              the moment early access opens.
+            </p>
+          </div>
+
+          <!-- Formulario -->
+          <form
+            class="flex flex-col sm:flex-row gap-3"
+            onsubmit="handleSubmit(event)"
+          >
+            <input
+              type="email"
+              id="email"
+              placeholder="you@example.com"
+              required
+              class="flex-1 px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 text-slate-50 text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400"
+            />
+            <button
+              type="submit"
+              class="px-5 py-3 rounded-xl bg-amber-400 text-slate-900 text-sm font-semibold hover:bg-amber-300 active:bg-amber-200 transition shadow-lg shadow-amber-400/20"
+            >
+              Join waitlist
+            </button>
+          </form>
+
+          <!-- Mensaje de privacidad -->
+          <p class="text-[11px] text-slate-500">
+            No spam, no nonsense. Just a single email when we’re ready for you.
+          </p>
+
+          <!-- Pie mini -->
+          <div class="flex items-center justify-between pt-2 border-t border-slate-800/60 text-[11px] text-slate-500">
+            <span>© {new Date().getFullYear()} VXGear</span>
+            <span>Feel the road. Virtually.</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      async function handleSubmit(e) {
+        e.preventDefault();
+        const emailInput = document.getElementById("email");
+        const email = emailInput.value.trim();
+        if (!email) return;
+
+        // 👉 CAMBIA ESTA URL POR TU WEBHOOK DE N8N CUANDO LO TENGAS
+        try {
+          await fetch("https://example.com/webhook/vxgear-waitlist", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email }),
+          });
+          alert("You're in. We'll notify you soon 🤘");
+          emailInput.value = "";
+        } catch (err) {
+          console.error(err);
+          alert("Something went wrong. Please try again in a moment.");
+        }
+      }
+    </script>
+  </body>
+</html>
