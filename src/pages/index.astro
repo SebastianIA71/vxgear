@@ -95,8 +95,9 @@ export const prerender = true;
           <input
             id="emailInput"
             type="email"
+            name="email"
             required
-            placeholder="Enter your email"
+            placeholder="Enter your 1email"
             class="flex-1 border border-white/20 bg-white/10 text-white rounded-l-xl px-4 py-3 outline-none placeholder-white/50"
           />
           <button
@@ -108,7 +109,6 @@ export const prerender = true;
           </button>
         </form>
 
-        <!-- FEEDBACK MESSAGE -->
         <p id="feedbackMsg" class="text-sm mt-3 opacity-0 transition-all duration-300"></p>
 
         <script>
@@ -123,21 +123,24 @@ export const prerender = true;
             const email = emailInput.value.trim();
             if (!email) return;
 
-            // Loading state
+            // Estado "enviando"
             submitBtn.innerText = "Sending...";
             submitBtn.disabled = true;
             submitBtn.classList.add("opacity-70");
 
+            // Enviar como form-data (lo que espera el backend)
+            const body = new FormData();
+            body.append("email", email);
+
             try {
               const res = await fetch("/api/subscribe", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email }),
+                body,                 // <-- nada de JSON
               });
 
               const data = await res.json();
 
-              if (data.success) {
+              if (res.ok && data.success) {
                 msg.innerText = "You’re in! Welcome to VXGear.";
                 msg.className = "text-green-400 text-sm mt-3 opacity-100";
                 form.reset();
@@ -149,7 +152,6 @@ export const prerender = true;
               msg.className = "text-red-400 text-sm mt-3 opacity-100";
             }
 
-            // Reset button
             submitBtn.innerText = "Join now";
             submitBtn.disabled = false;
             submitBtn.classList.remove("opacity-70");
