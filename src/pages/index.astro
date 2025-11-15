@@ -72,7 +72,7 @@ export const prerender = true;
           const phrases = [
             "Find the gear that fits your ride.",
             "Smart picks for smarter riders.",
-            "Style and safety—perfectly matched.",
+            "Style and safety matched at perfection.",
             "Your road, your look, your gear.",
             "Ride smarter. Dress better.",
             "Gear made for how you ride."
@@ -83,7 +83,7 @@ export const prerender = true;
           // Construimos el bloque con el highlight dorado
           document.getElementById("dynamicTitle").innerHTML =
             randomPhrase.replace(
-              /gear|ride|look|style/gi,
+              /gear|ride|look|road|dress|picks|safety|perfection|riders|style/gi,
               (match) => `<span class="text-[#B79A29]">${match}</span>`
             );
         </script>
@@ -119,7 +119,7 @@ export const prerender = true;
             type="email"
             name="email"
             required
-            placeholder="Enter your 1email"
+            placeholder="Enter your email"
             class="flex-1 border border-white/20 bg-white/10 text-white rounded-l-xl px-4 py-3 outline-none placeholder-white/50"
           />
           <button
