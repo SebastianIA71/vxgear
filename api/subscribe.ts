@@ -1,32 +1,21 @@
 import { createPool } from '@vercel/postgres';
 
-// Crear pool de conexión reutilizable
+// Pool para Neon
 const pool = createPool({
   connectionString: process.env.VXGEAR_DB_URL,
 });
 
-// Función auxiliar para leer form-urlencoded
-async function readBody(req: Request): Promise<string> {
-  const buf = await req.arrayBuffer();
-  return Buffer.from(buf).toString("utf-8");
-}
-
+// Vercel Functions usan este handler
 export default async function handler(req: Request): Promise<Response> {
   try {
-
+    // Solo aceptar POST
     if (req.method !== "POST") {
-      return new Response(JSON.stringify({ error: "Method Not Allowed" }), {
-        status: 405,
-        headers: { "Content-Type": "application/json" },
-      });
+      return new Response("Method Not Allowed", { status: 405 });
     }
 
-    // Leer el body crudo
-    const raw = await readBody(req);
-
-    // Parsear form-data
-    const params = new URLSearchParams(raw);
-    const email = params.get("email");
+    // IMPORTANTE: leer body como formData (Vercel lo soporta)
+    const form = await req.formData();
+    const email = form.get("email")?.toString();
 
     if (!email) {
       return new Response(JSON.stringify({ error: "Email required" }), {
@@ -35,7 +24,7 @@ export default async function handler(req: Request): Promise<Response> {
       });
     }
 
-    // Insertar en base de datos
+    // Guardar en BD
     const client = await pool.connect();
     await client.sql`
       INSERT INTO subscribers (email)
@@ -44,13 +33,14 @@ export default async function handler(req: Request): Promise<Response> {
     `;
     client.release();
 
+    // RESPUESTA OK
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json" }
     });
 
   } catch (err) {
-    console.error("SERVER ERROR", err);
+    console.error("ERROR SERVERLESS:", err);
     return new Response(JSON.stringify({ error: "Internal Server Error" }), {
       status: 500,
       headers: { "Content-Type": "application/json" }
