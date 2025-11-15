@@ -1,51 +1,59 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
 import { createPool } from '@vercel/postgres';
 
+// Crear pool de conexión reutilizable
 const pool = createPool({
   connectionString: process.env.VXGEAR_DB_URL,
 });
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method Not Allowed' });
-  }
+// Función auxiliar para leer form-urlencoded
+async function readBody(req: Request): Promise<string> {
+  const buf = await req.arrayBuffer();
+  return Buffer.from(buf).toString("utf-8");
+}
 
+export default async function handler(req: Request): Promise<Response> {
   try {
-    // --- PARSEAR BODY FORM-DATA ---
-    const rawBody = await getRawBody(req);
-    const params = new URLSearchParams(rawBody.toString());
+
+    if (req.method !== "POST") {
+      return new Response(JSON.stringify({ error: "Method Not Allowed" }), {
+        status: 405,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    // Leer el body crudo
+    const raw = await readBody(req);
+
+    // Parsear form-data
+    const params = new URLSearchParams(raw);
     const email = params.get("email");
 
     if (!email) {
-      return res.status(400).json({ error: "Email required" });
+      return new Response(JSON.stringify({ error: "Email required" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" }
+      });
     }
 
+    // Insertar en base de datos
     const client = await pool.connect();
-    
     await client.sql`
       INSERT INTO subscribers (email)
       VALUES (${email})
       ON CONFLICT (email) DO NOTHING;
     `;
-    
     client.release();
 
-    return res.status(200).json({ success: true });
+    return new Response(JSON.stringify({ success: true }), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
 
   } catch (err) {
     console.error("SERVER ERROR", err);
-    return res.status(500).json({ error: "Internal server error" });
-  }
-}
-
-// --- Utilidad para leer FORM POST ---
-function getRawBody(req: VercelRequest): Promise<Buffer> {
-  return new Promise((resolve, reject) => {
-    let data = Buffer.alloc(0);
-    req.on("data", (chunk) => {
-      data = Buffer.concat([data, chunk]);
+    return new Response(JSON.stringify({ error: "Internal Server Error" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" }
     });
-    req.on("end", () => resolve(data));
-    req.on("error", reject);
-  });
+  }
 }
