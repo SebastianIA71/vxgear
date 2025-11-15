@@ -70,7 +70,9 @@ export const prerender = true;
           VXGear uses AI to analyze your style, your bike and the road conditions to recommend jackets, helmets, gloves and accessories that truly fit you.
         </p>
 
-        <!-- EMAIL FORM -->
+
+
+        <!-- EMAIL FORM 
         <form action="/api/subscribe" method="POST" class="flex mt-8 max-w-lg">
           <input
             type="email"
@@ -85,7 +87,77 @@ export const prerender = true;
           >
             Join now
           </button>
+        </form>-->
+
+
+        <!-- EMAIL FORM -->
+        <form id="waitlistForm" class="flex mt-8 max-w-lg">
+          <input
+            id="emailInput"
+            type="email"
+            required
+            placeholder="Enter your email"
+            class="flex-1 border border-white/20 bg-white/10 text-white rounded-l-xl px-4 py-3 outline-none placeholder-white/50"
+          />
+          <button
+            id="submitBtn"
+            type="submit"
+            class="bg-[#B79A29] text-black font-semibold px-6 py-3 rounded-r-xl hover:bg-[#d8b643] transition"
+          >
+            Join now
+          </button>
         </form>
+
+        <!-- FEEDBACK MESSAGE -->
+        <p id="feedbackMsg" class="text-sm mt-3 opacity-0 transition-all duration-300"></p>
+
+        <script>
+          const form = document.getElementById("waitlistForm");
+          const emailInput = document.getElementById("emailInput");
+          const submitBtn = document.getElementById("submitBtn");
+          const msg = document.getElementById("feedbackMsg");
+
+          form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const email = emailInput.value.trim();
+            if (!email) return;
+
+            // Loading state
+            submitBtn.innerText = "Sending...";
+            submitBtn.disabled = true;
+            submitBtn.classList.add("opacity-70");
+
+            try {
+              const res = await fetch("/api/subscribe", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email }),
+              });
+
+              const data = await res.json();
+
+              if (data.success) {
+                msg.innerText = "You’re in! Welcome to VXGear.";
+                msg.className = "text-green-400 text-sm mt-3 opacity-100";
+                form.reset();
+              } else {
+                throw new Error("Failed");
+              }
+            } catch (err) {
+              msg.innerText = "Something went wrong. Try again.";
+              msg.className = "text-red-400 text-sm mt-3 opacity-100";
+            }
+
+            // Reset button
+            submitBtn.innerText = "Join now";
+            submitBtn.disabled = false;
+            submitBtn.classList.remove("opacity-70");
+          });
+        </script>
+
+
+
 
         
         <!-- AVATARS -->
