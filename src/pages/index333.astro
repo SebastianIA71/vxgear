@@ -60,33 +60,11 @@ export const prerender = true;
           </div>
       </div>
 
-        <!-- TITLE 
+        <!-- TITLE -->
         <h1 class="text-4xl md:text-5xl font-semibold leading-tight mt-6">
           Discover your perfect<br />
           <span class="text-[#B79A29]">motorcycle gear.</span>
-        </h1>-->
-
-        <h1 id="dynamicTitle" class="text-4xl md:text-5xl font-semibold leading-tight mt-6"></h1>
-
-        <script>
-          const phrases = [
-            "Find the gear that fits your ride.",
-            "Smart picks for smarter riders.",
-            "Style and safety—perfectly matched.",
-            "Your road, your look, your gear.",
-            "Ride smarter. Dress better.",
-            "Gear made for how you ride."
-          ];
-
-          const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
-
-          // Construimos el bloque con el highlight dorado
-          document.getElementById("dynamicTitle").innerHTML =
-            randomPhrase.replace(
-              /gear|ride|look|style/gi,
-              (match) => `<span class="text-[#B79A29]">${match}</span>`
-            );
-        </script>
+        </h1>
 
         <p class="text-white/60 mt-4 max-w-xl">
           VXGear uses AI to analyze your style, your bike and the road conditions to recommend jackets, helmets, gloves and accessories that truly fit you.
