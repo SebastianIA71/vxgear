@@ -1,6 +1,9 @@
 ---
 export const prerender = true;
 import t from "../../i18n/es";
+import { inject } from "@vercel/analytics";
+inject();
+
 ---
 
 <!DOCTYPE html>
@@ -188,11 +191,6 @@ import t from "../../i18n/es";
           imgs[index].classList.add("active");
         }, 3800);
       });
-    </script>
-
-    <script type="module">
-      import { inject } from "@vercel/analytics";
-      inject();
     </script>
     
   </body>

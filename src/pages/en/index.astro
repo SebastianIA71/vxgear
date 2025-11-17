@@ -1,6 +1,8 @@
 ---
 export const prerender = true;
 import t from "../../i18n/en";
+import { inject } from "@vercel/analytics";
+inject();
 ---
 
 
@@ -195,10 +197,5 @@ import t from "../../i18n/en";
       });
     </script>
 
-    <script type="module">
-      import { inject } from "@vercel/analytics";
-      inject();
-    </script>
-    
   </body>
 </html>
