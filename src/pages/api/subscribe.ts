@@ -6,6 +6,7 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const formData = await request.formData();
     const email = formData.get("email")?.toString();
+    const lang = formData.get("lang")?.toString() || "unknown";
 
     if (!email) {
       return new Response(JSON.stringify({ error: "Email required" }), {
@@ -14,28 +15,26 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    // 🔥 LOCAL: NO HAY DB_URL → devolvemos success inmediato
+    // Local (sin BBDD)
     if (!import.meta.env.VXGEAR_DB_URL) {
-      console.log("⚠ Development mode: email no almacenado (local).", email);
+      console.log("⚠ Stored locally:", { email, lang });
       return new Response(JSON.stringify({ success: true, local: true }), {
         status: 200,
         headers: { "Content-Type": "application/json" },
       });
     }
 
-    // 🔥 PRODUCCIÓN: cargar dinámicamente la librería SOLO aquí
+    // Producción
     const { createPool } = await import("@vercel/postgres");
-
-    const pool = createPool({
-      connectionString: import.meta.env.VXGEAR_DB_URL,
-    });
-
+    const pool = createPool({ connectionString: import.meta.env.VXGEAR_DB_URL });
     const client = await pool.connect();
+
     await client.sql`
-      INSERT INTO subscribers (email)
-      VALUES (${email})
-      ON CONFLICT (email) DO NOTHING;
+      INSERT INTO subscribers (email, lang)
+      VALUES (${email}, ${lang})
+      ON CONFLICT (email) DO UPDATE SET lang = ${lang};
     `;
+
     client.release();
 
     return new Response(JSON.stringify({ success: true }), {
@@ -51,3 +50,4 @@ export const POST: APIRoute = async ({ request }) => {
     });
   }
 };
+
