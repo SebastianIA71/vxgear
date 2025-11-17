@@ -3,7 +3,7 @@ export const GET: APIRoute = async () => {
     const client = await pool.connect();
 
     const result = await client.sql`
-      SELECT COUNT(*)::int AS total FROM subscribers;
+      SELECT COUNT(*) AS total FROM subscribers;
     `;
 
     client.release();
