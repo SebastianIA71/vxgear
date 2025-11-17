@@ -79,7 +79,7 @@ import t from "../../i18n/en";
             type="email"
             name="email"
             required
-            placeholder={t.placeholder}
+            placeholder="Enter your email"
             class="flex-1 border border-white/20 bg-white/10 text-white rounded-l-xl px-4 py-3 outline-none placeholder-white/50"
           />
           <button
@@ -87,12 +87,13 @@ import t from "../../i18n/en";
             type="submit"
             class="bg-[#B79A29] text-black font-semibold px-6 py-3 rounded-r-xl hover:bg-[#d8b643] transition"
           >
-            {t.join}
+            Join now
           </button>
         </form>
 
         <p id="feedbackMsg" class="text-sm mt-3 opacity-0 transition-all duration-300"></p>
 
+        <!-- 🔥 NUEVO SCRIPT AQUÍ -->
         <script>
           const form = document.getElementById("waitlistForm");
           const emailInput = document.getElementById("emailInput");
@@ -113,26 +114,38 @@ import t from "../../i18n/en";
             body.append("email", email);
 
             try {
-              const res = await fetch("/api/subscribe", { method: "POST", body });
-              const data = await res.json();
+              const res = await fetch("/api/subscribe", {
+                method: "POST",
+                body,
+              });
 
-              if (res.ok && data.success) {
-                msg.innerText = t.success;
+              let data = null;
+              try {
+                data = await res.json();
+              } catch {
+                data = null;
+              }
+
+              if (res.ok && data?.success) {
+                msg.innerText = "You're in! Welcome to VXGear.";
                 msg.className = "text-green-400 text-sm mt-3 opacity-100";
                 form.reset();
               } else {
-                throw new Error("Fail");
+                msg.innerText = "Something went wrong. Try again.";
+                msg.className = "text-red-400 text-sm mt-3 opacity-100";
               }
-            } catch {
-              msg.innerText = t.fail;
+
+            } catch (err) {
+              msg.innerText = "Something went wrong. Try again.";
               msg.className = "text-red-400 text-sm mt-3 opacity-100";
             }
 
-            submitBtn.innerText = t.join;
+            submitBtn.innerText = "Join now";
             submitBtn.disabled = false;
             submitBtn.classList.remove("opacity-70");
           });
         </script>
+
 
         <!-- AVATARS -->
         <div class="flex items-center gap-3 mt-6">
