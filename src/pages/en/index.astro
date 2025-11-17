@@ -186,23 +186,7 @@ inject();
         <footer class="mt-32 text-xs text-white/40">
           {t.footer1}<br />{t.footer2}
 
-
-        <p id="visitCount" class="text-xs text-white/40 mt-4"></p>
-
-        <script>
-          document.addEventListener("DOMContentLoaded", () => {
-            fetch("/api/views")
-              .then(res => res.json())
-              .then(data => {
-                document.getElementById("visitCount").textContent =
-                  `👀 ${data.views} visitas totales`;
-              })
-              .catch(() => {});
-          });
-        </script>
-
-
-        </footer>
+.        </footer>
 
       </div>
 
