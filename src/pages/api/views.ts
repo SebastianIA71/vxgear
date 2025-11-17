@@ -2,17 +2,18 @@ import type { APIRoute } from "astro";
 
 export const prerender = false;
 
-const WEBSITE_ID = "d7a9ed2d-2e4d-427e-aa15-2a38853d4650";
+const WEBSITE_ID = "d7a9ed2d-2e4d-427e-aa15-2a38853d4650"; // tu ID real
 const TOKEN = import.meta.env.UMAMI_API_TOKEN;
-const UMAMI_URL = "https://analytics.umami.is"; // si tu panel es otro, cambia
+const UMAMI_URL = "https://cloud.umami.is/api/websites";
 
 export const GET: APIRoute = async () => {
-  const now = Date.now();
-  const start = 0; // desde el principio
-
   try {
+    // Umami requiere fechas obligatorias
+    const startAt = 0;                      // desde el principio
+    const endAt = Date.now();              // hasta ahora
+
     const res = await fetch(
-      `${UMAMI_URL}/api/websites/${WEBSITE_ID}/stats?start_at=${start}&end_at=${now}`,
+      `${UMAMI_URL}/${WEBSITE_ID}/stats?startAt=${startAt}&endAt=${endAt}`,
       {
         headers: {
           Authorization: `Bearer ${TOKEN}`,
@@ -27,10 +28,14 @@ export const GET: APIRoute = async () => {
       JSON.stringify({
         views: data.pageviews?.value ?? 0,
         visitors: data.visitors?.value ?? 0,
+        raw: data, // debug temporal
       }),
-      { status: 200, headers: { "Content-Type": "application/json" } }
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      }
     );
-  } catch (e) {
+  } catch (error) {
     return new Response(JSON.stringify({ views: 0 }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
