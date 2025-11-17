@@ -163,6 +163,23 @@ inject();
             <img src="/img/avatar/avatar5.png" class="h-9 w-9 rounded-full border border-black shadow" />
           </div>
           <p class="text-sm text-white/50">{t.ridersJoined}</p>
+
+          <p id="emailCounter" class="text-xs text-white/40 mt-4"></p>
+
+          <script>
+            document.addEventListener("DOMContentLoaded", () => {
+              fetch("/api/count")
+                .then(res => res.json())
+                .then(data => {
+                  document.getElementById("emailCounter").textContent =
+                    `👥 ${data.total} riders ya se han apuntado`;
+                })
+                .catch(() => {});
+            });
+          </script>
+
+
+
         </div>
 
         <!-- FOOTER -->
