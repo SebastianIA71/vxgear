@@ -3,7 +3,7 @@ export const GET: APIRoute = async () => {
     const client = await pool.connect();
 
     const result = await client.sql`
-      SELECT MAX(id)::int AS max_id FROM subscribers;
+      SELECT COUNT(*) FROM subscribers;
     `;
 
     client.release();
