@@ -67,7 +67,7 @@ import t from "../../i18n/en";
 
             document.getElementById("dynamicTitle").innerHTML =
               randomPhrase.replace(
-                /gear|ride|look|road|dress|picks|safety|perfection|smarter|style/gi,
+                /gear|ride|look|road|dress|picks|safety|perfection|style/gi,
                 (match) => `<span class="text-[#B79A29]">${match}</span>`
               );
           });
@@ -165,7 +165,7 @@ import t from "../../i18n/en";
         </div>
 
         <!-- FOOTER -->
-        <footer class="mt-16 text-xs text-white/40">
+        <footer class="mt-32 text-xs text-white/40">
           {t.footer1}<br />{t.footer2}
         </footer>
 
@@ -196,24 +196,10 @@ import t from "../../i18n/en";
       });
     </script>
 
-    <script>
-      window.va = window.va || function() { (window.vaq = window.vaq || []).push(arguments); };
-
-      // Evento: Clic en botón Join Now
-      document.getElementById("submitBtn")?.addEventListener("click", () => {
-        window.va("event", "join_click");
-      });
-
-      // Evento: Scroll 50%
-      let sent50 = false;
-      window.addEventListener("scroll", () => {
-        if (!sent50 && window.scrollY > window.innerHeight * 0.5) {
-          sent50 = true;
-          window.va("event", "scroll_50");
-        }
-      });
+    <script type="module">
+      import { inject } from "@vercel/analytics";
+      inject();
     </script>
-    <Analytics />
-
+    
   </body>
 </html>
