@@ -73,13 +73,13 @@ import t from "../../i18n/es";
 
         <!-- EMAIL FORM -->
         <form id="waitlistForm" class="flex mt-8 max-w-lg">
-          <input type="hidden" name="lang" value="es" />
+          <input type="hidden" name="lang" value="en" />
           <input
             id="emailInput"
             type="email"
             name="email"
             required
-            placeholder="Introduce tu email"
+            placeholder="Enter your email"
             class="flex-1 border border-white/20 bg-white/10 text-white rounded-l-xl px-4 py-3 outline-none placeholder-white/50"
           />
           <button
@@ -87,7 +87,7 @@ import t from "../../i18n/es";
             type="submit"
             class="bg-[#B79A29] text-black font-semibold px-6 py-3 rounded-r-xl hover:bg-[#d8b643] transition"
           >
-            Únete ahora
+            Join now
           </button>
         </form>
 
@@ -102,11 +102,11 @@ import t from "../../i18n/es";
           form.addEventListener("submit", async (e) => {
             e.preventDefault();
 
-            submitBtn.innerText = "Enviando...";
+            submitBtn.innerText = "Sending...";
             submitBtn.disabled = true;
             submitBtn.classList.add("opacity-70");
 
-            // 🔥 Enviar todo el formulario (email + lang)
+            // 🔥 Send entire form (email + lang)
             const body = new FormData(form);
 
             try {
@@ -123,24 +123,25 @@ import t from "../../i18n/es";
               }
 
               if (res.ok && data?.success) {
-                msg.innerText = "¡Estás dentro! Bienvenido a VXGear.";
+                msg.innerText = "You're in! Welcome to VXGear.";
                 msg.className = "text-green-400 text-sm mt-3 opacity-100";
                 form.reset();
               } else {
-                msg.innerText = "Algo ha fallado. Inténtalo de nuevo.";
+                msg.innerText = "Something went wrong. Try again.";
                 msg.className = "text-red-400 text-sm mt-3 opacity-100";
               }
 
             } catch (err) {
-              msg.innerText = "Algo ha fallado. Inténtalo de nuevo.";
+              msg.innerText = "Something went wrong. Try again.";
               msg.className = "text-red-400 text-sm mt-3 opacity-100";
             }
 
-            submitBtn.innerText = "Únete ahora";
+            submitBtn.innerText = "Join now";
             submitBtn.disabled = false;
             submitBtn.classList.remove("opacity-70");
           });
         </script>
+
 
 
         <!-- AVATARS -->
