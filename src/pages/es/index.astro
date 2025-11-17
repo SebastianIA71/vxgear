@@ -1,0 +1,164 @@
+---
+export const prerender = true;
+import t from "../../i18n/es";
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>VXGear – Feel the Road</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <style>
+      body { font-family: 'Inter', sans-serif; margin: 0; }
+      #fadeCarousel img {
+        position: absolute; inset: 0; width: 100%; height: 100%;
+        object-fit: cover; opacity: 0; transition: opacity 1.5s ease-in-out;
+      }
+      #fadeCarousel img.active { opacity: 1; }
+    </style>
+  </head>
+
+  <body class="bg-[#0F0F0F] text-white">
+    <main class="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+
+      <!-- LEFT -->
+      <div class="px-8 lg:px-24 py-12 flex flex-col justify-center">
+
+        <!-- LANG SWITCHER -->
+        <nav class="absolute top-6 right-6 text-sm flex gap-4 text-white/70">
+          <a href="/es/" class="hover:text-white">ES</a>
+          <a href="/en/" class="hover:text-white">EN</a>
+        </nav>
+
+        <!-- LOGO -->
+        <div class="flex items-center gap-4 mb-12">
+          <img src="/img/logo.png" alt="VXGear Logo" class="h-32 w-auto object-contain" />
+        </div>
+
+        <!-- BADGE -->
+        <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-wide text-white/70">
+          <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+          {t.launching}
+        </div>
+
+        <!-- DYNAMIC TITLE -->
+        <h1 id="dynamicTitle" class="text-6xl md:text-6xl font-semibold leading-tight mt-6"></h1>
+
+        <script>
+          const phrases = t.dynamicPhrases;
+          const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+
+          document.getElementById("dynamicTitle").innerHTML =
+            randomPhrase.replace(
+              /equipamiento|moto|estilo|seguridad|carretera|conducir|selecciones/gi,
+              (match) => `<span class="text-[#B79A29]">${match}</span>`
+            );
+        </script>
+
+        <p class="text-white/60 mt-4 max-w-xl">{t.description}</p>
+
+        <!-- EMAIL FORM -->
+        <form id="waitlistForm" class="flex mt-8 max-w-lg">
+          <input
+            id="emailInput"
+            type="email"
+            name="email"
+            required
+            placeholder={t.placeholder}
+            class="flex-1 border border-white/20 bg-white/10 text-white rounded-l-xl px-4 py-3 outline-none placeholder-white/50"
+          />
+          <button
+            id="submitBtn"
+            type="submit"
+            class="bg-[#B79A29] text-black font-semibold px-6 py-3 rounded-r-xl hover:bg-[#d8b643] transition"
+          >
+            {t.join}
+          </button>
+        </form>
+
+        <p id="feedbackMsg" class="text-sm mt-3 opacity-0 transition-all duration-300"></p>
+
+        <script>
+          const form = document.getElementById("waitlistForm");
+          const emailInput = document.getElementById("emailInput");
+          const submitBtn = document.getElementById("submitBtn");
+          const msg = document.getElementById("feedbackMsg");
+
+          form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = emailInput.value.trim();
+            if (!email) return;
+
+            submitBtn.innerText = "Enviando...";
+            submitBtn.disabled = true;
+            submitBtn.classList.add("opacity-70");
+
+            const body = new FormData();
+            body.append("email", email);
+
+            try {
+              const res = await fetch("/api/subscribe", { method: "POST", body });
+              const data = await res.json();
+
+              if (res.ok && data.success) {
+                msg.innerText = t.success;
+                msg.className = "text-green-400 text-sm mt-3 opacity-100";
+                form.reset();
+              } else throw new Error();
+            } catch {
+              msg.innerText = t.fail;
+              msg.className = "text-red-400 text-sm mt-3 opacity-100";
+            }
+
+            submitBtn.innerText = t.join;
+            submitBtn.disabled = false;
+            submitBtn.classList.remove("opacity-70");
+          });
+        </script>
+
+        <!-- AVATARS -->
+        <div class="flex items-center gap-3 mt-6">
+          <div class="flex -space-x-3">
+            <img src="/img/avatar/avatar1.png" class="h-9 w-9 rounded-full border border-black shadow" />
+            <img src="/img/avatar/avatar2.png" class="h-9 w-9 rounded-full border border-black shadow" />
+            <img src="/img/avatar/avatar3.png" class="h-9 w-9 rounded-full border border-black shadow" />
+            <img src="/img/avatar/avatar4.png" class="h-9 w-9 rounded-full border border-black shadow" />
+            <img src="/img/avatar/avatar5.png" class="h-9 w-9 rounded-full border border-black shadow" />
+          </div>
+          <p class="text-sm text-white/50">{t.ridersJoined}</p>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="mt-16 text-xs text-white/40">
+          {t.footer1}<br />{t.footer2}
+        </footer>
+      </div>
+
+      <!-- RIGHT SIDE CAROUSEL -->
+      <div class="relative w-full h-[45vh] sm:h-[55vh] md:h-screen overflow-hidden">
+        <div id="fadeCarousel" class="absolute inset-0">
+          <img src="/img/slide_01.jpg" class="active" />
+          <img src="/img/slide_02.jpg" />
+          <img src="/img/slide_03.jpg" />
+          <img src="/img/slide_04.jpg" />          
+        </div>
+      </div>
+
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const imgs = document.querySelectorAll("#fadeCarousel img");
+        let index = 0;
+        setInterval(() => {
+          imgs[index].classList.remove("active");
+          index = (index + 1) % imgs.length;
+          imgs[index].classList.add("active");
+        }, 3800);
+      });
+    </script>
+  </body>
+</html>
