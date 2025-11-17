@@ -11,7 +11,7 @@ export const GET: APIRoute = async () => {
     const total = result.rows[0].max_id ?? 0;
 
     return new Response(
-      JSON.stringify({ total }),
+      JSON.stringify({ result }),
       {
         status: 200,
         headers: { "Content-Type": "application/json" },
