@@ -48,16 +48,27 @@ import t from "../../i18n/en";
         <h1 id="dynamicTitle" class="text-7xl md:text-6xl font-semibold leading-tight mt-6"></h1>
 
         <script>
-          const phrases = t.dynamicPhrases;
-          const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+          document.addEventListener("DOMContentLoaded", () => {
+            const phrases = [
+              "Find the gear that fits your ride.",
+              "Smart picks for smarter riders.",
+              "Style and safety matched at perfection.",
+              "Your road, your look, your gear.",
+              "Ride smarter. Dress better.",
+              "Gear made for how you ride."
+            ];
 
-          document.getElementById("dynamicTitle").innerHTML =
-            randomPhrase.replace(
-              /gear|ride|look|road|dress|picks|safety|perfection|smarter|style/gi,
-              (match) => `<span class="text-[#B79A29]">${match}</span>`
-            );
+            const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+
+            document.getElementById("dynamicTitle").innerHTML =
+              randomPhrase.replace(
+                /gear|ride|look|road|dress|picks|safety|perfection|smarter|style/gi,
+                (match) => `<span class="text-[#B79A29]">${match}</span>`
+              );
+          });
         </script>
 
+        
         <!-- DESCRIPTION -->
         <p class="text-white/60 mt-4 max-w-xl">{t.description}</p>
 
