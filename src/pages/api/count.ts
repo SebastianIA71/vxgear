@@ -3,12 +3,12 @@ export const GET: APIRoute = async () => {
     const client = await pool.connect();
 
     const result = await client.sql`
-      SELECT COUNT(*) FROM subscribers;
+      SELECT COUNT(*)::int AS total FROM subscribers;
     `;
 
     client.release();
 
-    const total = result.rows[0].max_id ?? 0;
+    const total = result.rows[0].total ?? 0;
 
     return new Response(
       JSON.stringify({ total }),
@@ -30,4 +30,5 @@ export const GET: APIRoute = async () => {
     );
   }
 };
+
 
