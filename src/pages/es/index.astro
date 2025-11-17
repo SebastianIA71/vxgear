@@ -160,7 +160,8 @@ inject();
             <img src="/img/avatar/avatar4.png" class="h-9 w-9 rounded-full border border-black shadow" />
             <img src="/img/avatar/avatar5.png" class="h-9 w-9 rounded-full border border-black shadow" />
           </div>
-          <p id="emailCounter" class="text-sm text-white/50 mt-4"></p>
+
+          <p id="emailCounter" class="text-sm text-white/70 translate-y-[1px]">
 
           <script>
             document.addEventListener("DOMContentLoaded", () => {
@@ -168,12 +169,12 @@ inject();
                 .then(res => res.json())
                 .then(data => {
                   document.getElementById("emailCounter").textContent =
-                    `${data.total} motoristas ya se han apuntado!`;
+                    `👥 ${data.total} motoristas ya se han apuntado!`;
                 })
                 .catch(() => {});
             });
           </script>
-
+        </p>
 
         </div>
 
