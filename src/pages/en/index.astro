@@ -132,6 +132,9 @@ import t from "../../i18n/en";
                 msg.innerText = "You're in! Welcome to VXGear.";
                 msg.className = "text-green-400 text-sm mt-3 opacity-100";
                 form.reset();
+
+                window.va("event", "email_registered");
+
               } else {
                 msg.innerText = "Something went wrong. Try again.";
                 msg.className = "text-red-400 text-sm mt-3 opacity-100";
@@ -192,6 +195,25 @@ import t from "../../i18n/en";
         }, 3800);
       });
     </script>
+
+    <script>
+      window.va = window.va || function() { (window.vaq = window.vaq || []).push(arguments); };
+
+      // Evento: Clic en botón Join Now
+      document.getElementById("submitBtn")?.addEventListener("click", () => {
+        window.va("event", "join_click");
+      });
+
+      // Evento: Scroll 50%
+      let sent50 = false;
+      window.addEventListener("scroll", () => {
+        if (!sent50 && window.scrollY > window.innerHeight * 0.5) {
+          sent50 = true;
+          window.va("event", "scroll_50");
+        }
+      });
+    </script>
+
 
   </body>
 </html>
