@@ -95,7 +95,6 @@ import t from "../../i18n/en";
 
         <p id="feedbackMsg" class="text-sm mt-3 opacity-0 transition-all duration-300"></p>
 
-        <!-- 🔥 NUEVO SCRIPT AQUÍ -->
         <script>
           const form = document.getElementById("waitlistForm");
           const emailInput = document.getElementById("emailInput");
@@ -105,15 +104,12 @@ import t from "../../i18n/en";
           form.addEventListener("submit", async (e) => {
             e.preventDefault();
 
-            const email = emailInput.value.trim();
-            if (!email) return;
-
             submitBtn.innerText = "Sending...";
             submitBtn.disabled = true;
             submitBtn.classList.add("opacity-70");
 
-            const body = new FormData();
-            body.append("email", email);
+            // 🔥 Send entire form (email + lang)
+            const body = new FormData(form);
 
             try {
               const res = await fetch("/api/subscribe", {
