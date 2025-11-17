@@ -10,7 +10,7 @@ export const prerender = false;
 export const GET: APIRoute = async () => {
   try {
     const client = await pool.connect();
-    const result = await client.sql`SELECT COUNT(*) FROM subscribers;`;
+    const result = await client.sql`SELECT MAX(id) FROM subscribers;`;
     client.release();
 
     const total = Number(result.rows[0].count ?? 0);
