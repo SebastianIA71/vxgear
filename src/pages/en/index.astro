@@ -173,12 +173,15 @@ inject();
         <p id="visitCount" class="text-xs text-white/40 mt-4"></p>
 
         <script>
-          fetch("/api/views")
-            .then(res => res.json())
-            .then(data => {
-              document.getElementById("visitCount").textContent =
-                `👀 ${data.views} visitas`;
-            });
+          document.addEventListener("DOMContentLoaded", () => {
+            fetch("/api/views")
+              .then(res => res.json())
+              .then(data => {
+                document.getElementById("visitCount").textContent =
+                  `👀 ${data.views} visitas totales`;
+              })
+              .catch(() => {});
+          });
         </script>
 
 
