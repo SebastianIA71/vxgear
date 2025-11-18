@@ -25,8 +25,8 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Producción
-    const { createPool } = await import("@vercel/postgres");
-    const pool = createPool({ connectionString: import.meta.env.VXGEAR_DB_URL });
+// const { createPool } = await import("@vercel/postgres");
+// const pool = createPool({ connectionString: import.meta.env.VXGEAR_DB_URL });
     const client = await pool.connect();
 
     await client.sql`
