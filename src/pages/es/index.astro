@@ -106,6 +106,9 @@ inject();
           const submitBtn = document.getElementById("submitBtn");
           const msg = document.getElementById("feedbackMsg");
 
+          // 🔥 Ejecutar contador al cargar la página
+          document.addEventListener("DOMContentLoaded", updateCount);
+
           form.addEventListener("submit", async (e) => {
             e.preventDefault();
 
@@ -113,7 +116,7 @@ inject();
             submitBtn.disabled = true;
             submitBtn.classList.add("opacity-70");
 
-            // 🔥 Enviar todo el formulario (email + lang)
+            // Enviar todo el formulario (email + lang)
             const body = new FormData(form);
 
             try {
@@ -134,6 +137,9 @@ inject();
                 msg.className = "text-green-400 text-sm mt-3 opacity-100";
                 form.reset();
 
+                // 🔥 Actualizar contador después de registrar email
+                await updateCount();
+
               } else {
                 msg.innerText = "Algo ha fallado. Inténtalo de nuevo.";
                 msg.className = "text-red-400 text-sm mt-3 opacity-100";
@@ -148,7 +154,23 @@ inject();
             submitBtn.disabled = false;
             submitBtn.classList.remove("opacity-70");
           });
+
+          // 📩 Función que actualiza el contador
+          async function updateCount() {
+            try {
+              const res = await fetch("/api/count");
+              const data = await res.json();
+
+              const countEl = document.getElementById("emailCounter");
+              if (countEl) {
+                countEl.textContent = `👥 ${data.total} motoristas ya se han unido`;
+              }
+            } catch (err) {
+              console.error("Error al actualizar contador:", err);
+            }
+          }
         </script>
+
 
 
         <!-- AVATARS -->

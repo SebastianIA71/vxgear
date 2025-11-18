@@ -107,6 +107,9 @@ inject();
           const submitBtn = document.getElementById("submitBtn");
           const msg = document.getElementById("feedbackMsg");
 
+          // 🔥 Ejecutar contador al cargar la página
+          document.addEventListener("DOMContentLoaded", updateCount);
+
           form.addEventListener("submit", async (e) => {
             e.preventDefault();
 
@@ -114,7 +117,6 @@ inject();
             submitBtn.disabled = true;
             submitBtn.classList.add("opacity-70");
 
-            // 🔥 Send entire form (email + lang)
             const body = new FormData(form);
 
             try {
@@ -123,24 +125,19 @@ inject();
                 body,
               });
 
-              let data = null;
-              try {
-                data = await res.json();
-              } catch {
-                data = null;
-              }
+              const data = await res.json();
 
               if (res.ok && data?.success) {
                 msg.innerText = "You're in! Welcome to VXGear.";
                 msg.className = "text-green-400 text-sm mt-3 opacity-100";
                 form.reset();
 
-
+                // 🔥 Actualiza el contador después de guardar email
+                await updateCount();
               } else {
                 msg.innerText = "Something went wrong. Try again.";
                 msg.className = "text-red-400 text-sm mt-3 opacity-100";
               }
-
             } catch (err) {
               msg.innerText = "Something went wrong. Try again.";
               msg.className = "text-red-400 text-sm mt-3 opacity-100";
@@ -151,23 +148,20 @@ inject();
             submitBtn.classList.remove("opacity-70");
           });
 
-        async function updateCount() {
-          try {
-            const res = await fetch("/api/count");
-            const data = await res.json();
+          // 📩 Función que actualiza el contador desde /api/count
+          async function updateCount() {
+            try {
+              const res = await fetch("/api/count");
+              const data = await res.json();
 
-            const countEl = document.getElementById("subscriberCount");
-            if (countEl) {
-              countEl.textContent = data.total;
+              const countEl = document.getElementById("emailCounter");
+              if (countEl) {
+                countEl.textContent = `👥 ${data.total} riders already joined!`;
+              }
+            } catch (err) {
+              console.error("Error updating count:", err);
             }
-          } catch (err) {
-            console.error("Error updating count:", err);
           }
-        }
-
-
-
-        await updateCount();
         </script>
 
 
