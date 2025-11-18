@@ -11,7 +11,7 @@ export default {
   ],
 
   description:
-    "VXGear uses AI to analyze your style, your bike and the road conditions to recommend jackets, helmets, gloves and accessories that truly fit you.",
+    "VXGear uses AI to analyze your style, your bike and the road conditions to recommend jackets, helmets, gloves and accessories that truly fit you.<br>Be the first to know. Join VXGear and we'll notify you as soon as the app is available. ",
 
   placeholder: "Enter your email",
   join: "Join now",

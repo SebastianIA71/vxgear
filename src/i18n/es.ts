@@ -11,7 +11,7 @@ export default {
   ],
 
   description:
-    "VXGear usa IA para analizar tu estilo, tu moto y las condiciones de la carretera y recomendar chaquetas, cascos, guantes y accesorios que realmente encajan contigo.",
+    "VXGear usa IA para analizar tu estilo, tu moto y las condiciones de la carretera y recomendar chaquetas, cascos, guantes y accesorios que realmente encajan contigo. Sé el primero en enterarte.<br> Únete a VXGear y te avisaremos en cuanto la app esté disponible.",
 
   placeholder: "Introduce tu email",
   join: "Únete ahora",
