@@ -150,8 +150,6 @@ inject();
             submitBtn.disabled = false;
             submitBtn.classList.remove("opacity-70");
           });
-        await updateCount();
-        </script>
 
         async function updateCount() {
           try {
@@ -166,6 +164,11 @@ inject();
             console.error("Error updating count:", err);
           }
         }
+
+
+
+        await updateCount();
+        </script>
 
 
 
