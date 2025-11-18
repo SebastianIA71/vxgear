@@ -150,7 +150,23 @@ inject();
             submitBtn.disabled = false;
             submitBtn.classList.remove("opacity-70");
           });
+        await updateCount();
         </script>
+
+        async function updateCount() {
+          try {
+            const res = await fetch("/api/count");
+            const data = await res.json();
+
+            const countEl = document.getElementById("subscriberCount");
+            if (countEl) {
+              countEl.textContent = data.total;
+            }
+          } catch (err) {
+            console.error("Error updating count:", err);
+          }
+        }
+
 
 
         <!-- AVATARS -->
