@@ -84,7 +84,7 @@ inject();
         </p>
 
         <!-- EMAIL FORM -->
-        <form id="waitlistForm" class="flex mt-2 max-w-lg">
+        <form id="waitlistForm" class="flex mt-1 max-w-lg">
           <input type="hidden" name="lang" value="es" />
           <input
             id="emailInput"
@@ -196,7 +196,7 @@ inject();
                 .then(res => res.json())
                 .then(data => {
                   document.getElementById("emailCounter").textContent =
-                    `👥 ${data.total} motoristas ya se han apuntado!`;
+                    `👥 ${data.total} motoristas ya se han unido!`;
                 })
                 .catch(() => {});
             });
