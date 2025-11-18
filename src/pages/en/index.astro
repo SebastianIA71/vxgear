@@ -39,12 +39,13 @@ inject();
       </div>
 
         <!-- LOGO -->
+         
         <div class="flex items-center gap-4 mb-12">
-          <img src="/img/logo.png" alt="VXGear Logo" class="h-40 w-auto object-contain" />
+          <img src="/img/logo.png" alt="VXGear Logo" class="h-32 w-auto object-contain md:h-40" />
         </div>
 
         <!-- BADGE -->
-        <div class="flex items-center gap-2 w-fit rounded-full 
+        <div class="flex items-center gap-2 w-1/2 md:w-fit rounded-full          
             border border-white/10 bg-white/5 
             px-3 py-1 text-xs uppercase tracking-wide text-white/70">
           <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
@@ -52,7 +53,9 @@ inject();
         </div>
 
         <!-- DYNAMIC TITLE -->
-        <h1 id="dynamicTitle" class="text-6xl md:text-6xl font-semibold leading-tight mt-6"></h1>
+        <h1 id="dynamicTitle" 
+          class="text-4xl leading-tight mt-6 md:text-6xl md:leading-tight font-semibold">        
+        </h1>
 
         <script>
           document.addEventListener("DOMContentLoaded", () => {
@@ -77,19 +80,21 @@ inject();
 
         
         <!-- DESCRIPTION -->
-        <p class="text-white/60 mt-4 w-full">
-          VXGear uses AI to analyze your style, your bike and the road conditions to recommend jackets, helmets, gloves and accessories that truly fit you.
+
+        <p class="text-base text-white/70 mt-4 w-full md:text-lg">
+           VXGear uses AI to analyze your style, your bike and the road conditions to recommend jackets, helmets, gloves and accessories that truly fit you.
         </p>
 
-        <p class="text-[#d1ccb8] mt-4 mb-3 w-full">
+        <p class="text-[#d1ccb8] text-base mt-4 mb-3 w-full md:text-lg">
           Be the first to know. Join VXGear and we'll notify you as soon as the app is available.
         </p>
 
-        <!-- EMAIL FORM -->
-        <form id="waitlistForm" class="flex mt-1 max-w-lg">
+        <!-- E MAIL FORM -->
+
+        <form id="waitlistForm" class="flex mt-3 max-w-lg w-full">
           <input type="hidden" name="lang" value="en" />
           <input
-            id="emailInput"
+            id="emailInput" 
             type="email"
             name="email"
             required
