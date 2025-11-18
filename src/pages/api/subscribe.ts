@@ -1,4 +1,6 @@
 import type { APIRoute } from "astro";
+import { pool } from "../../lib/db";
+
 
 export const prerender = false;
 

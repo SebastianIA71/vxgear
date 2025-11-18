@@ -1,3 +1,5 @@
+import { pool } from "../../lib/db";
+
 export const GET: APIRoute = async () => {
   try {
     const client = await pool.connect();
