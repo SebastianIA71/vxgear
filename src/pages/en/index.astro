@@ -23,7 +23,7 @@ inject();
       }
       #fadeCarousel img.active { opacity: 1; }
 
-      #mobileCarousel img {
+      #mobileCarousel img {aspect-ratio: 3 / 2;
         position: absolute; inset: 0; width: 100%; height: 100%;
         object-fit: cover; opacity: 0; transition: opacity 1.5s ease-in-out;
       }
@@ -52,11 +52,11 @@ inject();
         <!-- LOGO -->
          
         <div class="flex items-center gap-4 mb-12">
-          <img src="/img/logo.png" alt="VXGear Logo" class="h-40 w-auto object-contain md:h-40" />
+          <img src="/img/logo.png" alt="VXGear Logo" class="h-32 w-auto object-contain md:h-40" />
         </div>
 
         <!-- MOBILE CAROUSEL -->
-        <div class="block lg:hidden relative w-full h-[45vh] sm:h-[55vh] overflow-hidden mt-4">
+        <div class="block lg:hidden relative w-full h-[38vh] sm:h-[42vh] overflow-hidden mt-2 mb-4">
           <div id="mobileCarousel" class="absolute inset-0">
             <img src="/img/slide_01.jpg" class="active" />
             <img src="/img/slide_02.jpg" />
@@ -103,7 +103,7 @@ inject();
         <!-- DESCRIPTION -->
 
         <p class=" text-white/60 mt-4 w-full md:text-base">
-           VXGear22 uses AI to analyze your style, your bike and the road conditions to recommend jackets, helmets, gloves and accessories that truly fit you.
+           VXGear23 uses AI to analyze your style, your bike and the road conditions to recommend jackets, helmets, gloves and accessories that truly fit you.
         </p>
 
         <p class="text-[#d1ccb8] mt-4 mb-3 w-full md:text-base">
