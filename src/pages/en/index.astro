@@ -45,6 +45,18 @@ inject();
           <img src="/img/logo.png" alt="VXGear Logo" class="h-40 w-auto object-contain md:h-40" />
         </div>
 
+        <!-- MOBILE CAROUSEL -->
+        <div class="block lg:hidden relative w-full h-[45vh] sm:h-[55vh] overflow-hidden mt-4">
+          <div id="mobileCarousel" class="absolute inset-0">
+            <img src="/img/slide_01.jpg" class="active" />
+            <img src="/img/slide_02.jpg" />
+            <img src="/img/slide_03.jpg" />
+            <img src="/img/slide_04.jpg" />
+          </div>
+        </div>
+
+
+
         <!-- BADGE -->
         <div class="flex items-center gap-2 w-fit rounded-full          
             border border-white/10 bg-white/5 
@@ -81,7 +93,7 @@ inject();
         <!-- DESCRIPTION -->
 
         <p class=" text-white/60 mt-4 w-full md:text-base">
-           VXGear20 uses AI to analyze your style, your bike and the road conditions to recommend jackets, helmets, gloves and accessories that truly fit you.
+           VXGear21 uses AI to analyze your style, your bike and the road conditions to recommend jackets, helmets, gloves and accessories that truly fit you.
         </p>
 
         <p class="text-[#d1ccb8] mt-4 mb-3 w-full md:text-base">
@@ -214,7 +226,7 @@ inject();
       </div>
 
       <!-- RIGHT CAROUSEL -->
-      <div class="relative w-full h-[45vh] sm:h-[55vh] md:h-screen overflow-hidden">
+      <div class="hidden lg:block relative w-full h-[45vh] sm:h-[55vh] md:h-screen overflow-hidden">
         <div id="fadeCarousel" class="absolute inset-0">
           <img src="/img/slide_01.jpg" class="active" />
           <img src="/img/slide_02.jpg" />
