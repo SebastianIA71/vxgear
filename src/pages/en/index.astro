@@ -46,9 +46,9 @@ inject();
         </div>
 
         <!-- BADGE -->
-        <div class="flex items-center gap-2 w-1/2 md:w-fit rounded-full          
+        <div class="flex items-center gap-2 w-fit rounded-full          
             border border-white/10 bg-white/5 
-            px-3 py-1  text-xs md:text-xs  uppercase tracking-wide text-white/70">
+            px-3 py-1  text-xs uppercase tracking-wide text-white/70">
           <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
           {t.launching}
         </div>
@@ -82,7 +82,7 @@ inject();
         
         <!-- DESCRIPTION -->
 
-        <p class=" text-white/70 mt-4 w-full md:text-base">
+        <p class=" text-white/60 mt-4 w-full md:text-base">
            VXGear10 uses AI to analyze your style, your bike and the road conditions to recommend jackets, helmets, gloves and accessories that truly fit you.
         </p>
 
@@ -92,7 +92,7 @@ inject();
 
         <!-- E MAIL FORM -->
 
-        <form id="waitlistForm" class="flex mt-1 max-w-lg w-full">
+        <form id="waitlistForm" class="flex mt-1 max-w-lg">
           <input type="hidden" name="lang" value="en" />
           <input
             id="emailInput" 
@@ -111,7 +111,7 @@ inject();
           </button>
         </form>
 
-        <p id="feedbackMsg" class="text-4xl mt-3 opacity-0 transition-all duration-300 md:text-sm"></p>
+        <p id="feedbackMsg" class="text-sm mt-3 opacity-0 transition-all duration-300 md:text-sm"></p>
 
         <script>
           const form = document.getElementById("waitlistForm");
