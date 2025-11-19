@@ -22,6 +22,12 @@ inject();
         object-fit: cover; opacity: 0; transition: opacity 1.5s ease-in-out;
       }
       #fadeCarousel img.active { opacity: 1; }
+
+      #mobileCarousel img {
+        position: absolute; inset: 0; width: 100%; height: 100%;
+        object-fit: cover; opacity: 0; transition: opacity 1.5s ease-in-out;
+      }
+      #mobileCarousel img.active { opacity: 1; }      
     </style>
   </head>
 
@@ -32,7 +38,7 @@ inject();
       <div class="px-8 lg:px-24 py-12 flex flex-col justify-center">
 
       <!-- LANG SWITCHER -->
-      <div class="flex justify-end mb-6 lg:mb-10 -mt-6">
+      <div class="flex justify-end mb-2 -mt-6 lg:mb-10 lg:-mt-6">
         <nav class="flex gap-4 text-sm text-white/70">
           <a href="/es/" class="hover:text-white">ES</a>
           <a href="/en/" class="hover:text-white">EN</a>
@@ -40,9 +46,20 @@ inject();
       </div>
 
         <!-- LOGO -->
-        <div class="flex items-center gap-4 mb-12">
-          <img src="/img/logo.png" alt="VXGear Logo" class="h-40 w-auto object-contain" />
+        <div class="flex flex-col items-center justify-center mb-1 -mt-3 lg:items-start lg:flex-row">
+          <img src="/img/logo.png" alt="VXGear Logo" class="h-24 w-auto object-contain md:h-40" />
         </div>
+
+        <!-- MOBILE CAROUSEL -->
+        <div class="block lg:hidden relative w-full h-[38vh] sm:h-[42vh] overflow-hidden -mt-2 mb-4">
+          <div id="mobileCarousel" class="absolute inset-0">
+            <img src="/img/slide_01.jpg" class="active" />
+            <img src="/img/slide_02.jpg" />
+            <img src="/img/slide_03.jpg" />
+            <img src="/img/slide_04.jpg" />
+          </div>
+        </div>
+
 
         <!-- BADGE -->
         <div class="flex items-center gap-2 w-fit rounded-full 
@@ -215,7 +232,7 @@ inject();
       </div>
 
       <!-- RIGHT SIDE CAROUSEL -->
-      <div class="relative w-full h-[45vh] sm:h-[55vh] md:h-screen overflow-hidden">
+      <div class="hidden lg:block relative w-full h-[45vh] sm:h-[55vh] md:h-screen overflow-hidden">
         <div id="fadeCarousel" class="absolute inset-0">
           <img src="/img/slide_01.jpg" class="active" />
           <img src="/img/slide_02.jpg" />
@@ -234,6 +251,19 @@ inject();
           imgs[index].classList.remove("active");
           index = (index + 1) % imgs.length;
           imgs[index].classList.add("active");
+        }, 3800);
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const images = document.querySelectorAll("#mobileCarousel img");
+        let index = 0;
+
+        setInterval(() => {
+          images[index].classList.remove("active");
+          index = (index + 1) % images.length;
+          images[index].classList.add("active");
         }, 3800);
       });
     </script>
