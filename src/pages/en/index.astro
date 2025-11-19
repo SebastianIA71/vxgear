@@ -24,7 +24,7 @@ inject();
       #fadeCarousel img.active { opacity: 1; }
 
       #mobileCarousel img {aspect-ratio: 3 / 2;
-        position: absolute; inset: 0; width: 100%; height: 100%;
+        position: absolute; inset: 0; width: 100%; height: auto; scale: 0.85;
         object-fit: cover; opacity: 0; transition: opacity 1.5s ease-in-out;
       }
       #mobileCarousel img.active { opacity: 1; }
@@ -42,7 +42,7 @@ inject();
       <div class="px-8 lg:px-24 py-12 flex flex-col justify-center">
 
         <!-- LANGUAGE SWITCHER -->
-      <div class="flex justify-end mb-4 -mt-4 lg:mb-10 lg:-mt-6">
+      <div class="flex justify-end mb-2 -mt-6 lg:mb-10 lg:-mt-6">
         <nav class="flex gap-4 text-sm text-white/70">
           <a href="/es/" class="hover:text-white">{t.switchToEs}</a>
           <a href="/en/" class="hover:text-white">{t.switchToEn}</a>
@@ -50,7 +50,7 @@ inject();
       </div>
 
         <!-- LOGO -->
-        <div class="flex flex-col items-center justify-center mb-1 mt-0 lg:items-start lg:flex-row">
+        <div class="flex flex-col items-center justify-center mb-1 -mt-1 lg:items-start lg:flex-row">
           <img src="/img/logo.png" alt="VXGear Logo" class="h-24 w-auto object-contain md:h-40" />
         </div>
         
@@ -102,7 +102,7 @@ inject();
         <!-- DESCRIPTION -->
 
         <p class=" text-white/60 mt-4 w-full md:text-base">
-           VXGear25 uses AI to analyze your style, your bike and the road conditions to recommend jackets, helmets, gloves and accessories that truly fit you.
+           VXGear27 uses AI to analyze your style, your bike and the road conditions to recommend jackets, helmets, gloves and accessories that truly fit you.
         </p>
 
         <p class="text-[#d1ccb8] mt-4 mb-3 w-full md:text-base">
