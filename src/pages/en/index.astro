@@ -40,15 +40,16 @@ inject();
       </div>
 
         <!-- LOGO -->
-         
-        <div class="flex items-center gap-4 mb-12">
-          <img src="/img/logo.png" alt="VXGear Logo" class="h-40 w-auto object-contain md:h-40" />
-        </div>
 
+        <div class="flex items-center gap-4 mb-12 order-1 lg:order-none">
+          <img src="/img/logo.png" alt="VXGear Logo" class="h-40 w-auto object-contain md:h-40" />
+        </div>        
+        
         <!-- BADGE -->
-        <div class="flex items-center gap-2 w-fit rounded-full          
-            border border-white/10 bg-white/5 
-            px-3 py-1  text-xs uppercase tracking-wide text-white/70">
+
+        <div class="flex items-center gap-2 w-1/2 md:w-fit rounded-full 
+            border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase 
+            tracking-wide text-white/70 order-3 lg:order-none">
           <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
           {t.launching}
         </div>
@@ -214,7 +215,8 @@ inject();
       </div>
 
       <!-- RIGHT CAROUSEL -->
-      <div class="relative w-full h-[45vh] sm:h-[55vh] md:h-screen overflow-hidden">
+
+      <div class="relative w-full h-[45vh] sm:h-[55vh] md:h-screen overflow-hidden order-2 lg:order-none">
         <div id="fadeCarousel" class="absolute inset-0">
           <img src="/img/slide_01.jpg" class="active" />
           <img src="/img/slide_02.jpg" />
